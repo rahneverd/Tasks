@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <script>
+        function delClicked(id) {
+            var r = confirm("Are you sure you want to delete this item?");
+            if (r == true) {
+                window.location.href = "http://localhost:3000/delete/" + id;
+            }  
+        }
+    </script>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Take Notes</h1>
+    <form action="/createNotes" method="POST" class="my-4 form-inline">
+        <label for="addNote" class="sr-only">Add Note</label>
+        <input required type="text" placeholder="Add Note" name="addNote" id="addNote" class="form-control col mr-2">
+        <button type="Add" class="btn btn-success">Add</button>
+    </form>
+
+    <table class="table table-striped table-respomsive">
+        <thead>
+            <tr>
+                <th>S. No</th>
+                <th>Task</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%  var i = 1;
+                notes.forEach(note => { 
+            %>
+               <tr>
+                    <td><a href=""><%= i %><% i++ %></a></td>
+                    <td><a href=""><%= note.task %></a></td>
+                    <td><button id="<%= note._id %>" onclick="delClicked(id)">Delete</button></td>
+                </tr> 
+            <% });%>
+            
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
